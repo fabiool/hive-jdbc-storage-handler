@@ -13,11 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qubitproducts.hive.storage.jdbc.conf;
+package com.qubitproducts.hive.storage.jdbc.dao;
 
-public enum DatabaseType {
-    MYSQL,
-    H2,
-    DERBY,
-    NETEZZA
+/**
+ * MySQL specific data accessor. This is needed because MySQL JDBC drivers do not support generic LIMIT and OFFSET
+ * escape functions
+ */
+public class NetezzaDatabaseAccessor extends GenericJdbcDatabaseAccessor {
+
+    @Override
+    protected String addLimitAndOffsetToQuery(String sql, int limit, int offset) {
+    	throw new UnsupportedOperationException("Netezza NPS database does not support offset (tbc)");
+    }
+
+    @Override
+    protected String addLimitToQuery(String sql, int limit) {
+        return sql + " LIMIT " + limit;
+    }
+
 }

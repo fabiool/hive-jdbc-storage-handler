@@ -37,6 +37,10 @@ public class DatabaseAccessorFactory {
                 accessor = new MySqlDatabaseAccessor();
                 break;
 
+            case NETEZZA:
+                accessor = new MySqlDatabaseAccessor();
+                break;
+
             default:
                 accessor = new GenericJdbcDatabaseAccessor();
                 break;

@@ -15,10 +15,9 @@
  */
 package com.qubitproducts.hive.storage.jdbc;
 
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hive.metastore.HiveMetaHook;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
-import org.apache.hadoop.hive.ql.metadata.HiveStorageHandler;
+import org.apache.hadoop.hive.ql.metadata.DefaultStorageHandler;
 import org.apache.hadoop.hive.ql.plan.TableDesc;
 import org.apache.hadoop.hive.ql.security.authorization.HiveAuthorizationProvider;
 import org.apache.hadoop.hive.serde2.SerDe;
@@ -30,21 +29,21 @@ import com.qubitproducts.hive.storage.jdbc.conf.JdbcStorageConfigManager;
 import java.util.Map;
 import java.util.Properties;
 
-public class JdbcStorageHandler implements HiveStorageHandler {
+public class JdbcStorageHandler extends DefaultStorageHandler {
 
-    private Configuration conf;
-
-
-    @Override
-    public void setConf(Configuration conf) {
-        this.conf = conf;
-    }
-
-
-    @Override
-    public Configuration getConf() {
-        return this.conf;
-    }
+//    private Configuration conf;
+//
+//
+//    @Override
+//    public void setConf(Configuration conf) {
+//        this.conf = conf;
+//    }
+//
+//
+//    @Override
+//    public Configuration getConf() {
+//        return this.conf;
+//    }
 
 
     @SuppressWarnings("rawtypes")
