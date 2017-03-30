@@ -23,7 +23,8 @@ public class NetezzaDatabaseAccessor extends GenericJdbcDatabaseAccessor {
 
     @Override
     protected String addLimitAndOffsetToQuery(String sql, int limit, int offset) {
-    	throw new UnsupportedOperationException("Netezza NPS database does not support offset (tbc)");
+    	// throw new UnsupportedOperationException("Netezza NPS database does not support offset (tbc)");
+    	return addLimitToQuery(sql, limit);
     }
 
     @Override

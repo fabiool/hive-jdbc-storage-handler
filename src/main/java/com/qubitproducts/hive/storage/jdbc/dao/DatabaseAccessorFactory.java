@@ -29,7 +29,7 @@ public class DatabaseAccessorFactory {
     }
 
 
-    public static DatabaseAccessor getAccessor(DatabaseType dbType) {
+    private static DatabaseAccessor getAccessor(DatabaseType dbType) {
 
         DatabaseAccessor accessor = null;
         switch (dbType) {
@@ -38,7 +38,7 @@ public class DatabaseAccessorFactory {
                 break;
 
             case NETEZZA:
-                accessor = new MySqlDatabaseAccessor();
+                accessor = new NetezzaDatabaseAccessor();
                 break;
 
             default:
@@ -51,8 +51,7 @@ public class DatabaseAccessorFactory {
 
 
     public static DatabaseAccessor getAccessor(Configuration conf) {
-        DatabaseType dbType = DatabaseType.valueOf(conf.get(JdbcStorageConfig.DATABASE_TYPE.getPropertyName()));
-        return getAccessor(dbType);
+        return getAccessor(DatabaseType.valueOf(conf.get(JdbcStorageConfig.DATABASE_TYPE.getPropertyName())));
     }
 
 }

@@ -77,7 +77,7 @@ public class JdbcRecordIterator implements Iterator<Map<String, String>> {
         }
         catch (Exception e) {
             LOGGER.warn("next() threw exception", e);
-            return null;
+            throw new IllegalStateException("next() threw exception", e);
         }
     }
 

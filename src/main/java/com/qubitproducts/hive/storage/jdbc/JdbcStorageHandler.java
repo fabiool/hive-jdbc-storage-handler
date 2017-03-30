@@ -15,19 +15,16 @@
  */
 package com.qubitproducts.hive.storage.jdbc;
 
-import org.apache.hadoop.hive.metastore.HiveMetaHook;
-import org.apache.hadoop.hive.ql.metadata.HiveException;
+import java.util.Map;
+import java.util.Properties;
+
 import org.apache.hadoop.hive.ql.metadata.DefaultStorageHandler;
 import org.apache.hadoop.hive.ql.plan.TableDesc;
-import org.apache.hadoop.hive.ql.security.authorization.HiveAuthorizationProvider;
 import org.apache.hadoop.hive.serde2.SerDe;
 import org.apache.hadoop.mapred.InputFormat;
 import org.apache.hadoop.mapred.OutputFormat;
 
 import com.qubitproducts.hive.storage.jdbc.conf.JdbcStorageConfigManager;
-
-import java.util.Map;
-import java.util.Properties;
 
 public class JdbcStorageHandler extends DefaultStorageHandler {
 
@@ -66,35 +63,38 @@ public class JdbcStorageHandler extends DefaultStorageHandler {
     }
 
 
-    @Override
-    public HiveMetaHook getMetaHook() {
-        return null;
-    }
+//    @Override
+//    public HiveMetaHook getMetaHook() {
+//        return null;
+//    }
 
 
-    @Override
-    public void configureTableJobProperties(TableDesc tableDesc, Map<String, String> jobProperties) {
-        Properties properties = tableDesc.getProperties();
-        JdbcStorageConfigManager.copyConfigurationToJob(properties, jobProperties);
-    }
+//    @Override
+//    public HiveAuthorizationProvider getAuthorizationProvider() throws HiveException {
+//        return null;
+//    }
 
-
+    
     @Override
     public void configureInputJobProperties(TableDesc tableDesc, Map<String, String> jobProperties) {
+    	copyConfigurationToJob(tableDesc, jobProperties);
+    }
+
+
+//    @Override
+//    public void configureOutputJobProperties(TableDesc tableDesc, Map<String, String> jobProperties) {
+//        // Nothing to do here...
+//    }
+
+    
+    @Override
+    public void configureTableJobProperties(TableDesc tableDesc, Map<String, String> jobProperties) {
+    	copyConfigurationToJob(tableDesc, jobProperties);
+    }
+
+    
+    private static void copyConfigurationToJob(TableDesc tableDesc, Map<String, String> jobProperties) {
         Properties properties = tableDesc.getProperties();
         JdbcStorageConfigManager.copyConfigurationToJob(properties, jobProperties);
     }
-
-
-    @Override
-    public void configureOutputJobProperties(TableDesc tableDesc, Map<String, String> jobProperties) {
-        // Nothing to do here...
-    }
-
-
-    @Override
-    public HiveAuthorizationProvider getAuthorizationProvider() throws HiveException {
-        return null;
-    }
-
 }

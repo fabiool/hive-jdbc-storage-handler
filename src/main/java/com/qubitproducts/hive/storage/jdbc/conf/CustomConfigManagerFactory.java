@@ -34,6 +34,9 @@ public class CustomConfigManagerFactory {
             case MYSQL:
                 return nopConfigManager;
 
+            case NETEZZA:
+                return nopConfigManager;
+
             default:
                 return nopConfigManager;
         }

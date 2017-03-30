@@ -27,7 +27,7 @@ public class MySqlDatabaseAccessor extends GenericJdbcDatabaseAccessor {
             return addLimitToQuery(sql, limit);
         }
         else {
-            return sql + " LIMIT " + limit + "," + offset;
+            return sql + " LIMIT " + limit + " OFFSET " + offset;
         }
     }
 

@@ -15,6 +15,10 @@
  */
 package com.qubitproducts.hive.storage.jdbc;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
@@ -26,10 +30,6 @@ import org.slf4j.LoggerFactory;
 import com.qubitproducts.hive.storage.jdbc.dao.DatabaseAccessor;
 import com.qubitproducts.hive.storage.jdbc.dao.DatabaseAccessorFactory;
 import com.qubitproducts.hive.storage.jdbc.dao.JdbcRecordIterator;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Map.Entry;
 
 public class JdbcRecordReader implements RecordReader<LongWritable, MapWritable> {
 
@@ -122,13 +122,13 @@ public class JdbcRecordReader implements RecordReader<LongWritable, MapWritable>
     }
 
 
-    public void setDbAccessor(DatabaseAccessor dbAccessor) {
-        this.dbAccessor = dbAccessor;
-    }
-
-
-    public void setIterator(JdbcRecordIterator iterator) {
-        this.iterator = iterator;
-    }
+//    public void setDbAccessor(DatabaseAccessor dbAccessor) {
+//        this.dbAccessor = dbAccessor;
+//    }
+//
+//
+//    public void setIterator(JdbcRecordIterator iterator) {
+//        this.iterator = iterator;
+//    }
 
 }

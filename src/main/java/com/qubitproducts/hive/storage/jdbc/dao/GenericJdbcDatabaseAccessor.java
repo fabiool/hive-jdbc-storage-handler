@@ -46,7 +46,18 @@ public class GenericJdbcDatabaseAccessor implements DatabaseAccessor {
     protected static final Logger LOGGER = LoggerFactory.getLogger(GenericJdbcDatabaseAccessor.class);
     protected DataSource dbcpDataSource = null;
 
+    private static final String LIMIT_REGEX = "\\s+[Ll][Ii][Mm][Ii][Tt]\\s+\\d+\\s*";
+    private static final String OFFSET_REGEX = "\\s+[Oo][Ff][Ff][Ss][Ee][Tt]\\s+\\d+\\s*";
+    
+    public static String removeLimitClause(final String sql) {
+    	return sql.replaceAll(LIMIT_REGEX, " ");
+    }
 
+    public static String removeOffsetClause(final String sql) {
+    	return sql.replaceAll(OFFSET_REGEX, " ");
+    }
+    
+    
     public GenericJdbcDatabaseAccessor() {
     }
 
@@ -60,7 +71,10 @@ public class GenericJdbcDatabaseAccessor implements DatabaseAccessor {
         try {
             initializeDatabaseConnection(conf);
             String sql = JdbcStorageConfigManager.getQueryToExecute(conf);
+            sql = removeLimitClause(sql);
+            sql = removeOffsetClause(sql);
             String metadataQuery = addLimitToQuery(sql, 1);
+            
             LOGGER.debug("Query to execute is [{}]", metadataQuery);
 
             conn = dbcpDataSource.getConnection();
@@ -134,6 +148,8 @@ public class GenericJdbcDatabaseAccessor implements DatabaseAccessor {
         try {
             initializeDatabaseConnection(conf);
             String sql = JdbcStorageConfigManager.getQueryToExecute(conf);
+            sql = removeLimitClause(sql);
+            sql = removeOffsetClause(sql);
             String limitQuery = addLimitAndOffsetToQuery(sql, limit, offset);
             LOGGER.debug("Query to execute is [{}]", limitQuery);
 

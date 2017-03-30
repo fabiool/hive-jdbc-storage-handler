@@ -86,7 +86,6 @@ public class JdbcStorageConfigManager {
         if ((hiveFilterCondition != null) && (!hiveFilterCondition.trim().isEmpty())) {
             query = query + " WHERE " + hiveFilterCondition;
         }
-
         return query;
     }
 

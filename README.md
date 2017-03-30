@@ -16,6 +16,8 @@ Usage
 
 *   Create an external table in Hive:
 
+
+
         CREATE EXTERNAL TABLE mysql_test
         (
             id STRING,

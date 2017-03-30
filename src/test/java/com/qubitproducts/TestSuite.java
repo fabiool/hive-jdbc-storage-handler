@@ -24,8 +24,8 @@ import com.qubitproducts.hive.storage.jdbc.QueryConditionBuilderTest;
 import com.qubitproducts.hive.storage.jdbc.dao.GenericJdbcDatabaseAccessorTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ JdbcStorageConfigManagerTest.class, GenericJdbcDatabaseAccessorTest.class,
-               QueryConditionBuilderTest.class })
+@SuiteClasses({ JdbcStorageConfigManagerTest.class, GenericJdbcDatabaseAccessorTest.class /* ,
+		QueryConditionBuilderTest.class */ })
 public class TestSuite {
 
 }
